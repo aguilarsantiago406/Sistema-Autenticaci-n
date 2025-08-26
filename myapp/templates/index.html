@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Validación</title>
+</head>
+<body>
+    <h1>Formulario de Validación</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="nombre" placeholder="Nombre">
+        {% if errores.nombre %}
+            <p style="color:red">{{ errores.nombre }}</p>
+        {% endif %}
+
+        <input type="text" name="correo" placeholder="Correo electrónico">
+        {% if errores.correo %}
+            <p style="color:red">{{ errores.correo }}</p>
+        {% endif %}
+
+        <input type="text" name="telefono" placeholder="Teléfono">
+        {% if errores.telefono %}
+            <p style="color:red">{{ errores.telefono }}</p>
+        {% endif %}
+
+        <button type="submit">Validar</button>
+    </form>
+
+    {% if mensaje %}
+        <p style="color:green">{{ mensaje }}</p>
+    {% endif %}
+</body>
+</html>
