@@ -81,33 +81,42 @@
         <h2 class="form-title">Formulario de Validación</h2>
         <form method="POST" novalidate>
             {% csrf_token %}
-            <!-- Nombre -->
-            <div class="mb-3">
-                <label class="form-label">Nombre completo</label>
-                <input type="text" name="nombre" class="form-control {% if errores.nombre %}is-invalid{% endif %}" placeholder="Nombre">
-                {% if errores.nombre %}
-                    <div class="invalid-feedback">{{ errores.nombre }}</div>
-                {% endif %}
-            </div>
-            
-            <!-- Correo -->
-            <div class="mb-3">
-                <label class="form-label">Correo electrónico</label>
-                <input type="email" name="correo" class="form-control {% if errores.correo %}is-invalid{% endif %}" placeholder="Correo electrónico">
-                {% if errores.correo %}
-                    <div class="invalid-feedback">{{ errores.correo }}</div>
-                {% endif %}
-            </div>
-            
-            <!-- Teléfono -->
-            <div class="mb-3">
-                <label class="form-label">Número de teléfono</label>
-                <input type="tel" name="telefono" class="form-control {% if errores.telefono %}is-invalid{% endif %}" placeholder="Teléfono">
-                {% if errores.telefono %}
-                    <div class="invalid-feedback">{{ errores.telefono }}</div>
-                {% endif %}
-            </div>
-            
+        <!-- Nombre -->
+<div class="mb-3">
+    <label class="form-label">Nombre completo</label>
+    <input type="text" name="nombre" 
+           class="form-control {% if errores.nombre %}is-invalid{% endif %}" 
+           placeholder="Nombre"
+           value="{% if errores %}{{ request.POST.nombre }}{% endif %}">
+    {% if errores.nombre %}
+        <div class="invalid-feedback">{{ errores.nombre }}</div>
+    {% endif %}
+</div>
+
+<!-- Correo -->
+<div class="mb-3">
+    <label class="form-label">Correo electrónico</label>
+    <input type="email" name="correo" 
+           class="form-control {% if errores.correo %}is-invalid{% endif %}" 
+           placeholder="Correo electrónico"
+           value="{% if errores %}{{ request.POST.correo }}{% endif %}">
+    {% if errores.correo %}
+        <div class="invalid-feedback">{{ errores.correo }}</div>
+    {% endif %}
+</div>
+
+<!-- Teléfono -->
+<div class="mb-3">
+    <label class="form-label">Número de teléfono</label>
+    <input type="tel" name="telefono" 
+           class="form-control {% if errores.telefono %}is-invalid{% endif %}" 
+           placeholder="Teléfono"
+           value="{% if errores %}{{ request.POST.telefono }}{% endif %}">
+    {% if errores.telefono %}
+        <div class="invalid-feedback">{{ errores.telefono }}</div>
+    {% endif %}
+</div>
+
             <button type="submit" class="btn btn-primary w-100">Validar información</button>
         </form>
         
